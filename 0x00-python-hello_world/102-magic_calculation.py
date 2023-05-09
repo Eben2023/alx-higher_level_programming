@@ -1,2 +1,3 @@
+#!/bin/bash
 def magic_calculation(a, b):
     return ((a ^ b) + 98) ^ 0x10
