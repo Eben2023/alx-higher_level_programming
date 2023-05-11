@@ -1,10 +1,7 @@
 #!/usr/bin/python3
-if __name__ == "__main__":
+if __name__ == "__main__"
+import sys
 
-    args = list(map(int, sys.argv[1:]))
-
-    sum = 0
-    for arg in args:
-        sum += arg
-
-    print(sum)
+args = sys.argv[1:]  # Ignore the first argument (the script name)
+result = sum(int(arg) for arg in args)
+print(result)
