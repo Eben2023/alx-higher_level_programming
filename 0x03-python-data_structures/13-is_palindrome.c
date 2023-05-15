@@ -48,8 +48,7 @@ else
 prev_slow_ptr->next = second_half;
 }
 }
-
-return is_pal;
+return (is_pal);
 }
 
 /**
@@ -73,7 +72,7 @@ current = next;
 }
 
 *head = prev;
-return *head;
+return (*head);
 }
 
 /**
@@ -90,7 +89,7 @@ while (head1 != NULL && head2 != NULL)
 {
 if (head1->n != head2->n)
 {
-return 0;
+return (0);
 }
 head1 = head1->next;
 head2 = head2->next;
