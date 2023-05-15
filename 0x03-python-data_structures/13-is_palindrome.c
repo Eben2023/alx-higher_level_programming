@@ -1,5 +1,10 @@
 #include "lists.h"
 
+int is_palindrome(listint_t **head);
+listint_t *reverse_listint(listint_t **head);
+int compare_lists(listint_t *head1, listint_t *head2);
+
+
 /**
  * is_palindrome - Checks if a singly linked list is a palindrome.
  * @head: A pointer to the head of the linked list.
