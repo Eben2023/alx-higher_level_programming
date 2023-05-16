@@ -1,29 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <Python.h>
-
-/**
- * print_python_list_info - Prints basic info about a Python list object.
- * @p: A pointer to a PyObject list object.
- *
- * Description: This function prints the size of the list, and the data
- * type of each element in the list.
- *
- * Return: Nothing.
- */
 
 void print_python_list_info(PyObject *p)
 {
-int size = (int)PyList_Size(p);
-printf("[*] Size of the Python List = %d\n", size);
+PyListObject *list = (PyListObject *)p;
+Py_ssize_t size = PyList_Size(p);
+Py_ssize_t i;
+PyObject *obj;
 
-int alloc = (int)(((PyListObject *)p)->allocated);
-printf("[*] Allocated = %d\n", alloc);
+printf("[*] Size of the Python List = %zd\n", size);
+printf("[*] Allocated = %zd\n", list->allocated);
 
-int i;
-PyObject *item;
-PyListObject *plist = (PyListObject *)p;
 for (i = 0; i < size; i++)
 {
-item = PyList_GetItem(p, i);
-printf("Element %d: %s\n", i, Py_TYPE(item)->tp_name);
+obj = PyList_GetItem(p, i);
+printf("Element %zd: ", i);
+if (PyFloat_Check(obj))
+printf("float\n");
+else if (PyLong_Check(obj))
+printf("int\n");
+else if (PyUnicode_Check(obj))
+printf("str\n");
+else if (PyList_Check(obj))
+printf("list\n");
+else if (PyTuple_Check(obj))
+printf("tuple\n");
+else if (PyDict_Check(obj))
+printf("dict\n");
+else if (PyBool_Check(obj))
+printf("bool\n");
+else if (PyBytes_Check(obj))
+printf("bytes\n");
+else if (PyByteArray_Check(obj))
+printf("bytearray\n");
+else if (PySet_Check(obj))
+printf("set\n");
+else if (PyAnySet_Check(obj))
+printf("set\n");
+else if (PyFrozenSet_Check(obj))
+printf("frozenset\n");
+else if (PyAnySet_CheckExact(obj))
+printf("set\n");
+else
+printf("%s\n", obj->ob_type->tp_name);
 }
 }
