@@ -1,4 +1,7 @@
 #!/usr/bin/python3
 def update_dictionary(a_dictionary, key, value):
-    new_dict = {**a_dictionary, key: value}
-    return new_dict
+    if key in a_dictionary:
+        a_dictionary[key] = value
+    else:
+        a_dictionary.update({key: value})
+    return a_dictionary
