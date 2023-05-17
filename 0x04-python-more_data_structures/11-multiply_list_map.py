@@ -1,2 +1,5 @@
+#!/usr/bin/python3
 def multiply_list_map(my_list=[], number=0):
-    return list(i * number for i in map(lambda x: x, my_list))
+    multiply_lambda = lambda i: i * number
+    result = list(map(multiply_lambda, my_list))
+    return result
