@@ -1,5 +1,2 @@
 def multiply_list_map(my_list=[], number=0):
-  my_list = []
-  for a in my_list:
-    my_list.append(a * number)
-  return my_list
+    return [e * number for e in my_list]
