@@ -18,13 +18,10 @@ if (!PyBytes_Check(p))
 printf("  [ERROR] Invalid Bytes Object\n");
 return;
 }
-
 size = ((PyVarObject *)(p))->ob_size;
 string = ((PyBytesObject *)p)->ob_sval;
-
 printf("  size: %ld\n", size);
 printf("  trying string: %s\n", string);
-
 if (size >= 10)
 limit = 10;
 else
@@ -39,6 +36,23 @@ else
 printf(" %02x", 256 + string[i]);
 
 printf("\n");
+}
+
+/**
+ * print_python_bytes_wrapper - Wrapper function for print_python_bytes
+ *
+ * @p: Python Object
+ * Return: no return
+ */
+void print_python_bytes_wrapper(PyObject *p)
+{
+if (!PyBytes_Check(p))
+{
+printf("  [ERROR] Invalid Bytes Object\n");
+return;
+}
+
+print_python_bytes(p);
 }
 
 /**
@@ -67,4 +81,15 @@ printf("Element %ld: %s\n", i, ((obj)->ob_type)->tp_name);
 if (PyBytes_Check(obj))
 print_python_bytes(obj);
 }
+}
+
+/**
+ * print_python_list_wrapper - Wrapper function for print_python_list
+ *
+ * @p: Python Object
+ * Return: no return
+ */
+void print_python_list_wrapper(PyObject *p)
+{
+print_python_list(p);
 }
