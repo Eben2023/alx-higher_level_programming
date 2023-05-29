@@ -1,91 +1,115 @@
 #include <Python.h>
-#include <stdio.h>
 
-void print_python_list(PyObject *p);
-void print_python_bytes(PyObject *p);
-void print_python_float(PyObject *p);
-
+void print_python_list(PyObject *list_object);
+void print_python_bytes(PyObject *bytes_object);
+void print_python_float(PyObject *float_object);
 
 /**
  * print_python_list - Prints basic information about Python lists.
- * @p: A PyObject representing a Python list.
+ * @list_object: A PyObject representing a list.
+ *
+ * Return: void
  */
-void print_python_list(PyObject *p)
+void print_python_list(PyObject *list_object)
 {
-Py_ssize_t size, i;
-PyObject *item;
+Py_ssize_t size, alloc, i;
+const char *type;
+PyListObject *list;
+PyVarObject *var;
 
-if (!PyList_Check(p))
+setbuf(stdout, NULL);
+
+list = (PyListObject *)list_object;
+var = (PyVarObject *)list_object;
+
+size = var->ob_size;
+alloc = list->allocated;
+
+printf("[*] Python list info\n");
+if (strcmp(list_object->ob_type->tp_name, "list") != 0)
 {
-printf("[ERROR] Invalid List Object\n");
-fflush(stdout);
+printf("  [ERROR] Invalid List Object\n");
 return;
 }
 
-size = PyList_Size(p);
-
-printf("[*] Python list info\n");
 printf("[*] Size of the Python List = %ld\n", size);
+printf("[*] Allocated = %ld\n", alloc);
 
 for (i = 0; i < size; i++)
 {
-item = PyList_GetItem(p, i);
-printf("Element %ld: %s\n", i, Py_TYPE(item)->tp_name);
-
-if (PyBytes_Check(item))
-print_python_bytes(item);
-else if (PyFloat_Check(item))
-print_python_float(item);
+type = list->ob_item[i]->ob_type->tp_name;
+printf("Element %ld: %s\n", i, type);
+if (strcmp(type, "bytes") == 0)
+print_python_bytes(list->ob_item[i]);
+else if (strcmp(type, "float") == 0)
+print_python_float(list->ob_item[i]);
 }
 }
 
 /**
- * print_python_bytes - Prints basic information about Python bytes objects.
- * @p: A PyObject representing a Python bytes object.
+ * print_python_bytes - Prints basic information about Python byte objects.
+ * @bytes_object: A PyObject representing a byte object.
+ *
+ * Return: void
  */
-void print_python_bytes(PyObject *p)
+void print_python_bytes(PyObject *bytes_object)
 {
 Py_ssize_t size, i;
-const char *data;
+PyBytesObject *bytes;
 
-if (!PyBytes_Check(p))
+setbuf(stdout, NULL);
+
+bytes = (PyBytesObject *)bytes_object;
+
+printf("[.] bytes object info\n");
+if (strcmp(bytes_object->ob_type->tp_name, "bytes") != 0)
 {
-printf("[ERROR] Invalid Bytes Object\n");
-fflush(stdout);
+printf("  [ERROR] Invalid Bytes Object\n");
 return;
 }
 
-size = PyBytes_Size(p);
-data = PyBytes_AsString(p);
-
-printf("[.] bytes object info\n");
+size = ((PyVarObject *)bytes_object)->ob_size;
 printf("  size: %ld\n", size);
-printf("  trying string: %s\n", data);
+printf("  trying string: %s\n", bytes->ob_sval);
 
-printf("  first %ld bytes:", (size < 10 ? size : 10));
-for (i = 0; i < size && i < 10; i++)
-printf(" %02x", (unsigned char)data[i]);
+if (size >= 10)
+size = 10;
+
+printf("  first %ld bytes: ", size);
+for (i = 0; i < size; i++)
+{
+printf("%02hhx", bytes->ob_sval[i]);
+if (i == size - 1)
 printf("\n");
+else
+printf(" ");
+}
 }
 
 /**
  * print_python_float - Prints basic information about Python float objects.
- * @p: A PyObject representing a Python float object.
+ * @float_object: A PyObject representing a float object.
+ *
+ * Return: void
  */
-void print_python_float(PyObject *p)
+void print_python_float(PyObject *float_object)
 {
-double value;
+char *buffer = NULL;
+PyFloatObject *float_obj;
 
-if (!PyFloat_Check(p))
+setbuf(stdout, NULL);
+
+float_obj = (PyFloatObject *)float_object;
+
+printf("[.] float object info\n");
+if (strcmp(float_object->ob_type->tp_name, "float") != 0)
 {
-printf("[ERROR] Invalid Float Object\n");
-fflush(stdout);
+printf("  [ERROR] Invalid Float Object\n");
 return;
 }
 
-value = PyFloat_AsDouble(p);
-
-printf("[.] float object info\n");
-printf("  value: %g\n", value);
-fflush(stdout);
+buffer = PyOS_double_to_string(float_obj->ob_fval, 'r', 0,
+                               Py_DTSF_ADD_DOT_0, NULL);
+printf("  value: %s\n", buffer);
+PyMem_Free(buffer);
 }
