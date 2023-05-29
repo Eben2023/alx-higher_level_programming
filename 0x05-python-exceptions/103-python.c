@@ -5,75 +5,87 @@ void print_python_list(PyObject *p);
 void print_python_bytes(PyObject *p);
 void print_python_float(PyObject *p);
 
+
 /**
- * print_python_list - Prints information about a Python list
- * @p: Pointer to a PyObject representing a Python list
+ * print_python_list - Prints basic information about Python lists.
+ * @p: A PyObject representing a Python list.
  */
 void print_python_list(PyObject *p)
 {
-Py_ssize_t size, alloc, i;
+Py_ssize_t size, i;
 PyObject *item;
 
+if (!PyList_Check(p))
+{
+printf("[ERROR] Invalid List Object\n");
+fflush(stdout);
+return;
+}
+
 size = PyList_Size(p);
-alloc = ((PyListObject *)p)->allocated;
 
 printf("[*] Python list info\n");
-printf("[*] Size of the Python List = %zd\n", size);
-printf("[*] Allocated = %zd\n", alloc);
+printf("[*] Size of the Python List = %ld\n", size);
 
 for (i = 0; i < size; i++)
 {
 item = PyList_GetItem(p, i);
-printf("Element %zd: %s\n", i, Py_TYPE(item)->tp_name);
+printf("Element %ld: %s\n", i, Py_TYPE(item)->tp_name);
+
+if (PyBytes_Check(item))
+print_python_bytes(item);
+else if (PyFloat_Check(item))
+print_python_float(item);
 }
 }
 
 /**
- * print_python_bytes - Prints information about a Python bytes object
- * @p: Pointer to a PyObject representing a Python bytes object
+ * print_python_bytes - Prints basic information about Python bytes objects.
+ * @p: A PyObject representing a Python bytes object.
  */
 void print_python_bytes(PyObject *p)
 {
 Py_ssize_t size, i;
-char *data;
-
-printf("[.] bytes object info\n");
+const char *data;
 
 if (!PyBytes_Check(p))
 {
-printf("  [ERROR] Invalid Bytes Object\n");
+printf("[ERROR] Invalid Bytes Object\n");
+fflush(stdout);
 return;
 }
 
 size = PyBytes_Size(p);
 data = PyBytes_AsString(p);
 
-printf("  size: %zd\n", size);
+printf("[.] bytes object info\n");
+printf("  size: %ld\n", size);
 printf("  trying string: %s\n", data);
 
-printf("  first %zd bytes:", (size + 1 < 10 ? size + 1 : 10));
-for (i = 0; i < size + 1 && i < 10; i++)
+printf("  first %ld bytes:", (size < 10 ? size : 10));
+for (i = 0; i < size && i < 10; i++)
 printf(" %02x", (unsigned char)data[i]);
 printf("\n");
 }
 
 /**
- * print_python_float - Prints information about a Python float object
- * @p: Pointer to a PyObject representing a Python float object
+ * print_python_float - Prints basic information about Python float objects.
+ * @p: A PyObject representing a Python float object.
  */
 void print_python_float(PyObject *p)
 {
 double value;
 
-printf("[.] float object info\n");
-
 if (!PyFloat_Check(p))
 {
-printf("  [ERROR] Invalid Float Object\n");
+printf("[ERROR] Invalid Float Object\n");
+fflush(stdout);
 return;
 }
 
 value = PyFloat_AsDouble(p);
 
+printf("[.] float object info\n");
 printf("  value: %g\n", value);
+fflush(stdout);
 }
