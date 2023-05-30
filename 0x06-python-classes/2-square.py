@@ -3,8 +3,10 @@
 """
 This module defines the Square class.
 
-The Square class represents a square shape. It allows instantiation with an optional size,
-validates the size parameter, and provides an attribute to access the size value.
+The Square class represents a square shape. It allows instantiation
+with an optional size,
+validates the size parameter, and provides an attribute to access
+the size value.
 """
 
 
@@ -34,3 +36,4 @@ class Square:
             raise ValueError("size must be >= 0")
 
         self.__size = size
+
