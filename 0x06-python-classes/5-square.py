@@ -10,6 +10,7 @@ and print the square,
 and allows access to the size attribute.
 """
 
+
 class Square:
     """
     Represents a square.
