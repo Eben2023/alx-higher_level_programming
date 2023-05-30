@@ -107,4 +107,3 @@ class SinglyLinkedList:
             result += str(current.data) + "\n"
             current = current.next_node
         return result.strip()
-
