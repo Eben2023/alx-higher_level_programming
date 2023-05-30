@@ -3,8 +3,10 @@
 """
 This module defines the Square class.
 
-The Square class represents a square shape. It allows instantiation with an optional size,
-validates the size parameter, provides a method to calculate the area, and hides the size
+The Square class represents a square shape. It allows instantiation
+with an optional size,
+validates the size parameter, provides a method to calculate the area,
+and hides the size
 attribute as a private instance attribute.
 """
 
