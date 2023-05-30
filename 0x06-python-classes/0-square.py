@@ -3,9 +3,11 @@
 """
 This module defines the Square class.
 
-The Square class represents a square shape. It can be used to create square objects
+The Square class represents a square shape. It can be used to
+create square objects
 with no specific attributes or methods.
 """
+
 
 class Square:
     """
