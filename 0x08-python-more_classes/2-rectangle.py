@@ -2,7 +2,8 @@
 
 """
 Module: 2-rectangle
-This module defines the Rectangle class with width and height attributes, along with area and perimeter methods.
+This module defines the Rectangle class with width and height attributes,
+along with area and perimeter methods.
 """
 
 
