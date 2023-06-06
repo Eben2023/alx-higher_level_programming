@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """
-Module - Rectangle
+Module - Rectangle Class module that defines an empty class
 """
 
 
 class Rectangle:
     """
-    Rectangle class
+    Rectangle class that is empty
     """
     pass
