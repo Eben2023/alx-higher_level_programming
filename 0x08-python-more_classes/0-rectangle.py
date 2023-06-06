@@ -1,7 +1,11 @@
 #!/usr/bin/python3
-'''Class rectangle'''
+"""
+Module - Rectangle
+"""
 
 
 class Rectangle:
-    '''Form'''
+    """
+    Rectangle class
+    """
     pass
