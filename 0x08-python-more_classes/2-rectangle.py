@@ -1,9 +1,6 @@
 #!/usr/bin/python3
-
 """
-Module: 2-rectangle
-This module defines the Rectangle class with width and height attributes,
-along with area and perimeter methods.
+Module - Rectangle
 """
 
 
@@ -14,10 +11,10 @@ class Rectangle:
 
     def __init__(self, width=0, height=0):
         """
-        Initializes a Rectangle instance.
+        Initializes a new instance of the Rectangle class.
         Args:
-            width (int): Width of the rectangle. Default is 0.
-            height (int): Height of the rectangle. Default is 0.
+            width (int): Width of the rectangle. Defaults to 0.
+            height (int): Height of the rectangle. Defaults to 0.
         """
         self.width = width
         self.height = height
@@ -25,18 +22,18 @@ class Rectangle:
     @property
     def width(self):
         """
-        Getter method for width attribute.
+        Getter method to retrieve the width of the rectangle.
         Returns:
-            int: Width of the rectangle.
+            int: The width of the rectangle.
         """
         return self.__width
 
     @width.setter
     def width(self, value):
         """
-        Setter method for width attribute.
+        Setter method to set the width of the rectangle.
         Args:
-            value (int): New width value.
+            value (int): The width value to set.
         Raises:
             TypeError: If the width is not an integer.
             ValueError: If the width is less than 0.
@@ -50,18 +47,18 @@ class Rectangle:
     @property
     def height(self):
         """
-        Getter method for height attribute.
+        Getter method to retrieve the height of the rectangle.
         Returns:
-            int: Height of the rectangle.
+            int: The height of the rectangle.
         """
         return self.__height
 
     @height.setter
     def height(self, value):
         """
-        Setter method for height attribute.
+        Setter method to set the height of the rectangle.
         Args:
-            value (int): New height value.
+            value (int): The height value to set.
         Raises:
             TypeError: If the height is not an integer.
             ValueError: If the height is less than 0.
@@ -74,16 +71,16 @@ class Rectangle:
 
     def area(self):
         """
-        Computes and returns the area of the rectangle.
+        Calculates and returns the area of the rectangle.
         Returns:
-            int: Area of the rectangle.
+            int: The area of the rectangle.
         """
         return self.__width * self.__height
 
     def perimeter(self):
         """
-        Computes and returns the perimeter of the rectangle.
+        Calculates and returns the perimeter of the rectangle.
         Returns:
-            int: Perimeter of the rectangle.
+            int: The perimeter of the rectangle.
         """
         return 2 * (self.__width + self.__height)
