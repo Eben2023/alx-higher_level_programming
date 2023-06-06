@@ -1,4 +1,7 @@
 #!/usr/bin/python3
-def magic_string():
-    magic_string.count = getattr(magic_string, 'count', 0) + 1
-    return "BestSchool" + (", BestSchool" * (magic_string.count - 1))
+class LockedClass:
+    """
+    Class that prevents dynamic creation of instance attributes, except for 'first_name'.
+    """
+
+    __slots__ = ["first_name"]
