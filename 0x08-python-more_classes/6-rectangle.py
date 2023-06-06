@@ -7,6 +7,7 @@ along with area, perimeter, string representation,
 and deletion message methods.
 """
 
+
 class Rectangle:
     """
     Rectangle class
