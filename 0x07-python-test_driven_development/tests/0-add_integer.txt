@@ -36,12 +36,12 @@
 >>> add_integer(2, "3")
 Traceback (most recent call last):
     ...
-TypeError: b must be an integer or float
+TypeError: b must be an integer
 
 >>> add_integer("2", 3)
 Traceback (most recent call last):
     ...
-TypeError: a must be an integer or float
+TypeError: a must be an integer
 
 >>> add_integer(2, 3, 4)
 Traceback (most recent call last):
