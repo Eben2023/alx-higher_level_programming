@@ -1,20 +1,47 @@
-This is the test file for the add_integer function.
+>>> add_integer(2, 3)
+5
 
->>> add_integer(1, 2)
-3
->>> add_integer(100, -2)
-98
+>>> add_integer(-5, 10)
+5
+
+>>> add_integer(0, 0)
+0
+
+>>> add_integer(2.5, 3)
+5
+
+>>> add_integer(2, 3.5)
+5
+
+>>> add_integer(2.5, 3.5)
+5
+
+>>> add_integer(2.3, 3.7)
+5
+
+>>> add_integer(2, b=3)
+5
+
+>>> add_integer(2, b=0)
+2
+
+>>> add_integer(a=2, b=3)
+5
+
 >>> add_integer(2)
 100
->>> add_integer(100.3, -2)
-98
->>> try:
-...     add_integer(4, "School")
-... except Exception as e:
-...     print(e)
-b must be an integer
->>> try:
-...     add_integer(None)
-... except Exception as e:
-...     print(e)
-a must be an integer
+
+>>> add_integer(2, "3")
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer or float
+
+>>> add_integer("2", 3)
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer or float
+
+>>> add_integer(2, 3, 4)
+Traceback (most recent call last):
+    ...
+TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
