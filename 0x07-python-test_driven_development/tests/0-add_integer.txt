@@ -47,3 +47,31 @@ TypeError: a must be an integer
 Traceback (most recent call last):
     ...
 TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
+
+Case Overflow:
+
+    >>> add_integer(float('inf'), 0)
+    Traceback (most recent call last):
+    	      ...
+    OverflowError: cannot convert float infinity to integer
+
+Case Overflow 2:
+
+    >>> add_integer(float('inf'), float('-inf'))
+    Traceback (most recent call last):
+    	      ...
+    OverflowError: cannot convert float infinity to integer
+
+Case NaN 1:
+
+    >>> add_integer(0, float('nan'))
+    Traceback (most recent call last):
+    	      ...
+    ValueError: cannot convert float NaN to integer
+
+Case NaN 2:
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+    	      ...
+    ValueError: cannot convert float NaN to integer
