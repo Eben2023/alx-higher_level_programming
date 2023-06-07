@@ -37,3 +37,23 @@ TypeError: The matrix must not be empty
 Traceback (most recent call last):
     ...
 TypeError: The matrix must be a list of lists
+
+
+
+>>> matrix = [[3, 9], [12, 15]]
+>>> matrix_divided(matrix, 0)
+Traceback (most recent call last):
+    ...
+ValueError: The divisor cannot be zero
+
+>>> matrix = [[3, 9], [12, 15, 3]]
+>>> matrix_divided(matrix, 3)
+Traceback (most recent call last):
+    ...
+TypeError: All rows of the matrix must have the same size
+
+>>> matrix = [[3, "9"], [15, 3]]
+>>> matrix_divided(matrix, 3)
+Traceback (most recent call last):
+    ...
+TypeError: The matrix must be a list of lists
