@@ -1,4 +1,3 @@
-"""
 This is the test file for the add_integer function.
 
 >>> add_integer(1, 2)
@@ -19,4 +18,3 @@ b must be an integer
 ... except Exception as e:
 ...     print(e)
 a must be an integer
-"""
