@@ -24,26 +24,21 @@ def matrix_divided(matrix, div):
         ZeroDivisionError: If `div` is equal to 0.
 
     """
-    # Validate matrix input
     if not isinstance(matrix, list) or not \
             all(isinstance(row, list) for row in matrix):
-        raise TypeError("matrix must be a matrix \
-                        (list of lists) of integers/floats")
+        raise TypeError("The matrix must be a list of lists")
 
-    # Validate matrix rows size
-    row_size = len(matrix[0])
-    if not all(len(row) == row_size for row in matrix):
-        raise TypeError("Each row of the matrix must have the same size")
+    if not matrix:
+        raise TypeError("The matrix must not be empty")
 
-    # Validate div input
+    num_rows = len(matrix)
+    if not all(len(row) == len(matrix[0]) for row in matrix):
+        raise TypeError("All rows of the matrix must have the same size")
+
     if not isinstance(div, (int, float)):
-        raise TypeError("div must be a number")
+        raise TypeError("The divisor must be a numeric value")
 
-    # Validate div is not zero
     if div == 0:
-        raise ZeroDivisionError("division by zero")
+        raise ValueError("The divisor cannot be zero")
 
-    # Perform division and round to 2 decimal places
-    new_matrix = [[round(elem / div, 2) for elem in row] for row in matrix]
-
-    return new_matrix
+    return [[round(element / div, 2) for element in row] for row in matrix]
