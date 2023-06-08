@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+"""Module for lazy_matrix_mul function"""
+
 import numpy as np
 
 """Matrix Multiplication Module using NumPy."""
