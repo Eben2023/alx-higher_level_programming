@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+This module defines text_indentation
+"""
+
 
 def text_indentation(text):
     """
