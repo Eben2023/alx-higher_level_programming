@@ -9,7 +9,8 @@ def say_my_name(first_name, last_name=""):
         last_name (str, optional): The last name. Defaults to "".
 
     Raises:
-        TypeError: If `first_name` is not a string or `last_name` is not a string.
+        TypeError: If `first_name` is not a string or
+        `last_name` is not a string.
 
     """
     if not isinstance(first_name, str):
