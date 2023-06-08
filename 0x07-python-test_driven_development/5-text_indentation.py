@@ -15,12 +15,30 @@ def text_indentation(text):
         TypeError: If `text` is not a string.
 
     """
+    # Check if the text is a string
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    punctuation_marks = ['.', '?', ':']
+    count = 0
 
-    for char in text:
-        print(char, end="")
-        if char in punctuation_marks:
-            print("\n\n", end="")
+    # Skip leading spaces
+    while count < len(text) and text[count] == " ":
+        count += 1
+
+    while count < len(text):
+        # Print the current character without a newline
+        print(text[count], end="")
+
+        if text[count] == "\n" or text[count] in ".?:":
+            if text[count] in ".?:":
+                print("\n")
+
+            count += 1
+
+            # Skip consecutive spaces
+            while count < len(text) and text[count] == " ":
+                count += 1
+
+            continue
+
+        count += 1
