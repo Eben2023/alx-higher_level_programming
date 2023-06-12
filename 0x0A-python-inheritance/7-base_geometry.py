@@ -10,7 +10,8 @@ class BaseGeometry:
     Represents a base geometry class.
 
     Public Methods:
-        area(self): Raises an Exception indicating that the method is not implemented.
+        area(self): Raises an Exception indicating that the method is not
+        implemented.
         integer_validator(self, name, value): Validates a value as an integer.
     """
 
