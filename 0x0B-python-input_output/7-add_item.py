@@ -31,10 +31,3 @@ def add_arguments_to_list(args):
     save_to_json_file(my_list, 'add_item.json')
 
     return my_list
-
-# Get command-line arguments excluding the script name
-arguments = sys.argv[1:]
-
-# Add arguments to the list and print the updated list
-updated_list = add_arguments_to_list(arguments)
-print(updated_list)
