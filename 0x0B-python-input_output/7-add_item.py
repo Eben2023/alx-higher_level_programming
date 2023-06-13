@@ -1,33 +1,30 @@
 #!/usr/bin/python3
-"""Module for add_arguments_to_lists"""
-
-
+"""Module for add_items_to_list"""
 import sys
 from os import path
 from save_to_json_file import save_to_json_file
 from load_from_json_file import load_from_json_file
 
-def add_arguments_to_list(args):
+
+def add_items_to_list(filename, args):
     """
-    Add all command-line arguments to a Python list.
+    Add the command-line arguments to a Python list and save it to a file.
 
     Args:
-        args (list): The list of command-line arguments.
+        filename (str): The name of the file to save the list to.
+        args (List[str]): The command-line arguments to add to the list.
 
     Returns:
-        list: The updated list with the added arguments.
+        None
     """
 
-    # Load existing list from file if it exists
-    if path.exists('add_item.json'):
-        my_list = load_from_json_file('add_item.json')
+    if path.exists(filename):
+        my_list = load_from_json_file(filename)
     else:
         my_list = []
 
-    # Add arguments to the list
     my_list.extend(args)
+    save_to_json_file(my_list, filename)
 
-    # Save the updated list to the file
-    save_to_json_file(my_list, 'add_item.json')
-
-    return my_list
+if __name__ == "__main__":
+    add_items_to_list("add_item.json", sys.argv[1:])
